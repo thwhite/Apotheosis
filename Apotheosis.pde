@@ -15,6 +15,27 @@ public void draw() {
 
 
 }
+abstract class Floater {
+  
+}
+//FLOATER: Abstract.
+
+//PLAYER
+  //Move: changes x and y coordinates. UNLESS player is in zone around walls, where you cannot go up/down. 
+
+//WALLS:
+  //Save x and y bounds. 
+  //Walls create a collision zone around themselves. Each zone is labeled, and disables the respective movement of an object.
+  //
+
+
+
+
+
+
+
+
+
 //CLASSES:
 /*
 ROOMS: Each area, which can connect to others. 
@@ -72,6 +93,7 @@ ORANGE: Security, can be subverted.
 GREEN: Ally, NPC, hacked. 
 BLUE: Wall, non-related. 
 PURPLE: Functional. e.g. for a Camera, functional aspect... 
+AQUA: The Swarm. 
 
 
 */
