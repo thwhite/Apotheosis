@@ -16,7 +16,7 @@ public void draw() {
 
 }
 abstract class Floater {
-  
+  int centerX, centerY, 
 }
 //FLOATER: Abstract.
 
@@ -27,7 +27,29 @@ abstract class Floater {
   //Save x and y bounds. 
   //Walls create a collision zone around themselves. Each zone is labeled, and disables the respective movement of an object.
   //
+abstract class Zone {
+  int x, y, width, height;
+  int loadState;
+  //Color is defined by individual class types. 
+  public Zone() {
+    int x = 0;
+    int y = 0;
+    int width = 50;
+    int height = 50;
+    loadState = 0;
+  }
+  public Zone(int xx, int yy, int wid, int hgt) {
+    int x = xx;
+    int y = yy;
+    int width = wid;
+    int height = hgt;
+    loadState = 0;
+  }
+  public void load(int mult) {
+    loadState += mult;
+  }
 
+}
 
 
 
