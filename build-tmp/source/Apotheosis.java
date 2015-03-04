@@ -16,7 +16,7 @@ public class Apotheosis extends PApplet {
 
 boolean mainMenu, gameState;
 Player eva;
-
+int speed = 3;
 
 
 
@@ -31,6 +31,7 @@ public void setup() {
 }
 public void draw() {
   background(0);
+  eva.move();
   eva.show();
 
 	//IF MENU
@@ -66,10 +67,18 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     //rotates the floater by a given number of degrees    
     myPointDirection+=nDegreesOfRotation;   
   }   
-  public void move (int xAmt, int yAmt)   //move the floater in the current direction of travel
+  public void move ()   //move the floater in the current direction of travel
   {      
-    myCenterX += xAmt;
-    myCenterY += yAmt;     
+    
+    //int speed = 3;
+    //if (keyPressed && keyCode == 16) {speed = 5;}
+
+    //System.out.println(keyPressed);
+
+    if (moveUp) {myCenterY -= speed;}
+    if (moveDown) {myCenterY += speed;}
+    if (moveLeft) {myCenterX -= speed;}
+    if (moveRight) {myCenterX += speed;}     
   }   
   public void show ()  //Draws the floater at the current position  
   {             
@@ -137,7 +146,43 @@ abstract class Zone {
 
 }
 
+boolean moveUp, moveDown, moveLeft, moveRight;
 
+public void keyPressed() {
+  if (key == 'a' || key == 'A') {
+    moveLeft = true;
+  }
+  if (key == 'w' || key == 'W') {
+    moveUp = true;
+  }
+  if (key == 'd' || key == 'D') {
+    moveRight = true;
+  }
+  if (key == 's' || key == 'S') {
+    moveDown = true;
+  }
+  if (keyCode == 16) {
+    speed = 12;
+  }
+}
+
+public void keyReleased() {
+  if (key == 'a' || key == 'A') {
+    moveLeft = false;
+  }
+  if (key == 'w' || key == 'W') {
+    moveUp = false;
+  }
+  if (key == 'd' || key == 'D') {
+    moveRight = false;
+  }
+  if (key == 's' || key == 'S') {
+    moveDown = false;
+  }
+  if (keyCode == 16) {
+    speed = 3;
+  }
+}
 
 
 
