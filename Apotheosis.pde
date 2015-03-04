@@ -1,13 +1,21 @@
-boolean mainMenu, gameState;
+//OBJECTS
 Player eva;
+Button btn;
+//ARRAYS
+
+
+//GAMESTATE VARIABLES
 int speed = 3;
+boolean mainMenu, gameState;
+
 
 
 
 public void setup() {
-  size(600, 600);
+  size(1000, 600);
 
   eva = new Player();
+  btn = new Button();
 
   mainMenu = false;
   gameState = true;
@@ -17,6 +25,8 @@ public void draw() {
   background(0);
   eva.move();
   eva.show();
+
+  btn.show();
 
 	//IF MENU
 	//IF GAME
@@ -168,8 +178,64 @@ public void keyReleased() {
   }
 }
 
+public abstract class TextArea 
+{
+  int myX, myY, myWidth, myHeight;
+  int myColor1, myColor2, myColor3;
+  public TextArea() {
+    myX = width/2;
+    myY = height/2;
+    myWidth = 100;
+    myHeight = 100;
+    myColor1 = 0; myColor2 = 0; myColor3 = 255;
+  }
+  public TextArea(int xx, int yy, int wid, int hgt, int cA, int cB, int cC) {
+    myX = xx;
+    myY = yy;
+    myWidth = wid;
+    myHeight = hgt;
+    myColor1 = cA; myColor2 = cB; myColor3 = cC;
+  }
+  public boolean detectHover() {
+    if (mouseX > myX && mouseX < myX + myWidth && mouseY > myY && mouseY < myY + myHeight) {
+      return true;
+    }
+    return false;
+  }
+  public void show() {
+    fill(myColor1, myColor2, myColor3);
+    rect(myX, myY, myWidth, myHeight);
+  }
+}
 
+public class Button extends TextArea
+{
+  String myText;
+  public Button() {
+    myText = "Test";
+  }
+  public Button(int xx, int yy, int wid, int hgt, int cA, int cB, int cC, String txt) { 
+    myText = txt;
+  }
+  public Button(int xx, int yy, int wid, int hgt, String txt) {
+    myX = xx;
+    myY = yy;
+    myWidth = wid;
+    myHeight = hgt;
+    myText = txt;
+    myColor1 = 0; myColor2 = 0; myColor3 = 200;
+  }
+  public void show() {
+    fill(myColor1, myColor2, myColor3);
+    rect(myX, myY, myWidth, myHeight);
 
+    pushStyle();
+    fill(0);
+    textAlign(CENTER);
+    text( myText, (myX + myWidth)/2, (myY + myHeight)/2   );
+    popStyle();
+  }
+}
 
 
 
