@@ -15,7 +15,7 @@ public void setup() {
   size(1000, 600);
 
   eva = new Player();
-  btn = new Button(50, 50, 100, 40, "Test");
+  btn = new Button(width - 100, height - 40, 100, 40, "Test");
 
   mainMenu = false;
   gameState = true;
@@ -231,12 +231,13 @@ public class Button extends TextArea
     fill(myColor1, myColor2, myColor3);
     rect(myX, myY, myWidth, myHeight);
 
-    pushStyle();
+    //pushStyle();
+    noStroke();
     fill(0);
-    textAlign(CENTER, TOP);
+    textAlign(CENTER, CENTER);
     textSize(25);
-    text( myText, (myX + myWidth)/2, (myY + myHeight)/2   );
-    popStyle();
+    text( myText, (2*myX + myWidth)/2, (2*myY + myHeight)/2 - 5 );
+    //popStyle();
   }
 }
 
