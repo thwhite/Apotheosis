@@ -15,7 +15,7 @@ public void setup() {
   size(1000, 600);
 
   eva = new Player();
-  btn = new Button();
+  btn = new Button(50, 50, 100, 40, "Test");
 
   mainMenu = false;
   gameState = true;
@@ -27,6 +27,8 @@ public void draw() {
   eva.show();
 
   btn.show();
+
+
 
 	//IF MENU
 	//IF GAME
@@ -231,7 +233,8 @@ public class Button extends TextArea
 
     pushStyle();
     fill(0);
-    textAlign(CENTER);
+    textAlign(CENTER, TOP);
+    textSize(25);
     text( myText, (myX + myWidth)/2, (myY + myHeight)/2   );
     popStyle();
   }
