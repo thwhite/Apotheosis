@@ -16,13 +16,14 @@ public class Apotheosis extends PApplet {
 
 //OBJECTS
 Player eva;
-Button btn;
+Button mainMenuBtn1, mainMenuBtn2, menuBtn, logBtn;
 //ARRAYS
 
 
 //GAMESTATE VARIABLES
 int speed = 3;
 boolean mainMenu, gameState;
+boolean gamePaused;
 
 
 
@@ -31,25 +32,53 @@ public void setup() {
   size(1000, 600);
 
   eva = new Player();
-  btn = new Button(width - 100, height - 40, 100, 40, "Test");
+  menuBtn = new Button(width - 100, height - 40, 100, 40, "Menu");
+  logBtn = new Button(width - 200, height - 40, 100, 40, "Log");
+  mainMenuBtn1 = new Button(width/2 - 75, height - 100, 150, 60, "LAUNCH");
 
-  mainMenu = false;
-  gameState = true;
+
+  mainMenu = true;
+  gameState = false;
 
 }
 public void draw() {
-  background(0);
-  eva.move();
-  eva.show();
-
-  btn.show();
+  
 
 
-
+  if (mainMenu) {
+    pushStyle();
+    background(0);
+    stroke(0, 0, 200);
+    fill(0, 0, 200);
+    textSize(15);
+    text("> Calibrating... charge balance ~ 146 +- 10.", 100, 30);
+    text("> Node 01 ... online.", 100, 60);
+    text("> Node 02 ... online.", 100, 90);
+    text("> Node 03 ... online.", 100, 120);
+    text("> Node 04 ... online.", 100, 150);
+    text("> Node 05 ... online.", 100, 180);
+    text("> Node 06 ... online.", 100, 210);
+    text("> Opening ...", 100, 240);
+    textSize(70);
+    text("Project Cassandra", 100, 320);
+    textSize(15);
+    text("> Core temperature - 1476 K", 100, 370);
+    text("> Core stability ... +- 147.", 100, 400);
+    text("Initiate skip sequence?", 100, 430);
+    textSize(20);
+    // text("Thomas White", 100, 500);
+    mainMenuBtn1.show();
+    popStyle();
+  }
 	//IF MENU
 	//IF GAME
   if (gameState) {
+    background(0);
+    eva.move();
+    eva.show();
 
+    menuBtn.show();
+    logBtn.show();
   }
 		//IF PAUSE
   
@@ -121,7 +150,7 @@ public class Player extends Floater
     yCorners = setY;
     myColor = color(0, 0, 255);
 
-    myCenterX = width/2;
+    myCenterX = width/2 - 200;
     myCenterY = height/2;
   }
 }
@@ -244,16 +273,21 @@ public class Button extends TextArea
     myColor1 = 0; myColor2 = 0; myColor3 = 200;
   }
   public void show() {
+
+    
     fill(myColor1, myColor2, myColor3);
+    if (this.detectHover()) {
+      fill(myColor1, myColor2, myColor3 - 50);
+    }
     rect(myX, myY, myWidth, myHeight);
 
-    //pushStyle();
+    pushStyle();
     noStroke();
     fill(0);
     textAlign(CENTER, CENTER);
     textSize(25);
     text( myText, (2*myX + myWidth)/2, (2*myY + myHeight)/2 - 5 );
-    //popStyle();
+    popStyle();
   }
 }
 
