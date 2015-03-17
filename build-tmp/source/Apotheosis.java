@@ -37,8 +37,8 @@ public void setup() {
   mainMenuBtn1 = new Button(width/2 - 75, height - 100, 150, 60, "LAUNCH");
 
 
-  mainMenu = true;
-  gameState = false;
+  mainMenu = false;
+  gameState = true;
 
 }
 public void draw() {
