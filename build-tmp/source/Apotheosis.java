@@ -18,7 +18,7 @@ public class Apotheosis extends PApplet {
 Player eva;
 Button mainMenuBtn1, mainMenuBtn2, menuBtn, logBtn;
 //ARRAYS
-
+boolean[] gameStates; 
 
 //GAMESTATE VARIABLES
 int speed = 3;
@@ -37,15 +37,18 @@ public void setup() {
   mainMenuBtn1 = new Button(width/2 - 75, height - 100, 150, 60, "LAUNCH");
 
 
-  mainMenu = false;
-  gameState = true;
+  gameStates = new boolean[3];
+  gameStates[0] = true;
+
+  // mainMenu = false;
+  // gameState = true;
 
 }
 public void draw() {
   
 
 
-  if (mainMenu) {
+  if (gameStates[0]) {
     pushStyle();
     background(0);
     stroke(0, 0, 200);
@@ -72,7 +75,7 @@ public void draw() {
   }
 	//IF MENU
 	//IF GAME
-  if (gameState) {
+  if (gameStates[1]) {
     background(0);
     eva.move();
     eva.show();
@@ -291,6 +294,25 @@ public class Button extends TextArea
   }
 }
 
+public class MenuButton extends Button
+{
+  int index;
+  public MenuButton() {index = -1;}
+  public MenuButton(int xx, int yy, int wid, int hgt, int cA, int cB, int cC, String txt, int idx) {
+    index = idx;
+  }
+  public MenuButton(int xx, int yy, int wid, int hgt, String txt, int idx) {
+    index = idx;
+  }
+  public void mouseReleased() {
+    if (detectHover(this)) {
+      for (boolean i: gameStates) {
+        i = false;
+      }
+      gameStates[index] = true;
+    }
+  }
+}
 
 
 //CLASSES:
