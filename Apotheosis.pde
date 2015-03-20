@@ -18,7 +18,7 @@ public void setup() {
   eva = new Player();
   menuBtn = new Button(width - 100, height - 40, 100, 40, "Menu");
   logBtn = new Button(width - 200, height - 40, 100, 40, "Log");
-  mainMenuBtn1 = new Button(width/2 - 75, height - 100, 150, 60, "LAUNCH");
+  mainMenuBtn1 = new MenuButton(width/2 - 75, height - 100, 150, 60, "LAUNCH", 1);
 
 
   gameStates = new boolean[3];
@@ -70,6 +70,8 @@ public void draw() {
 		//IF PAUSE
   
 	//IF SCENES
+
+  System.out.println(gameStates[0]);
 
 
 }
@@ -286,18 +288,31 @@ public class MenuButton extends Button
     index = idx;
   }
   public MenuButton(int xx, int yy, int wid, int hgt, String txt, int idx) {
+    myX = xx;
+    myY = yy;
+    myWidth = wid;
+    myHeight = hgt;
+    myText = txt;
+    myColor1 = 0; myColor2 = 0; myColor3 = 200;
     index = idx;
   }
   public void mouseReleased() {
-    if (detectHover(this)) {
-      for (boolean i: gameStates) {
-        i = false;
-      }
-      gameStates[index] = true;
+    if (this.detectHover()) {
+      for (int i = 0; i < gameStates.length; i ++) {
+        gameStates[i] = false;
+    }
+    gameStates[index] = true;
     }
   }
 }
 
+public void mouseReleased() {
+  if (gameStates[0]) {
+    mainMenuBtn1.mouseReleased();
+  }
+  background(255);
+
+}
 
 //CLASSES:
 /*
