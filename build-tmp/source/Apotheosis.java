@@ -18,6 +18,7 @@ public class Apotheosis extends PApplet {
 Player eva;
 Button mainMenuBtn1, mainMenuBtn2, menuBtn, logBtn;
 //ARRAYS
+ArrayList <Boolean> gameStates;
 
 
 //GAMESTATE VARIABLES
@@ -34,8 +35,10 @@ public void setup() {
   eva = new Player();
   menuBtn = new Button(width - 100, height - 40, 100, 40, "Menu");
   logBtn = new Button(width - 200, height - 40, 100, 40, "Log");
-  mainMenuBtn1 = new Button(width/2 - 75, height - 100, 150, 60, "LAUNCH");
+  mainMenuBtn1 = new gameStateButton(width/2 - 75, height - 100, 150, 60, "LAUNCH", 1);
 
+  // gameStates = new ArrayList <Boolean>;
+  // gameStates.add(true); gameStates.add(false); gameStates.add(false);
 
   mainMenu = true;
   gameState = false;
@@ -45,7 +48,7 @@ public void draw() {
   
 
 
-  if (mainMenu) {
+  if (gameStates[0]) {
     pushStyle();
     background(0);
     stroke(0, 0, 200);
@@ -72,7 +75,7 @@ public void draw() {
   }
 	//IF MENU
 	//IF GAME
-  if (gameState) {
+  if (gameStates[1]) {
     background(0);
     eva.move();
     eva.show();
@@ -86,22 +89,21 @@ public void draw() {
 
 
 }
-abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
+abstract class Floater 
 {   
-  protected int corners;  //the number of corners, a triangular floater has 3   
+  protected int corners;  
   protected int[] xCorners;   
   protected int[] yCorners;   
   protected int myColor;   
-  protected double myCenterX, myCenterY; //holds center coordinates   
-  protected double myPointDirection; //holds current direction the ship is pointing in degrees    
+  protected double myCenterX, myCenterY; 
+  protected double myPointDirection; 
   public void setX(int x) {myCenterX = x;}  
   public int getX() {return (int)myCenterX;}   
   public void setY(int y) {myCenterY = y;}   
   public int getY() {return (int)myCenterY;}   
   public void setPointDirection(int degrees) {myPointDirection = degrees;}   
   public double getPointDirection() {return myPointDirection;} 
-
-  //Accelerates the floater in the direction it is pointing (myPointDirection)   
+ 
 
   public void rotate (int nDegreesOfRotation)   
   {     
@@ -111,10 +113,6 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   public void move ()   //move the floater in the current direction of travel
   {      
     
-    //int speed = 3;
-    //if (keyPressed && keyCode == 16) {speed = 5;}
-
-    //System.out.println(keyPressed);
 
     if (moveUp) {myCenterY -= speed;}
     if (moveDown) {myCenterY += speed;}
@@ -289,8 +287,34 @@ public class Button extends TextArea
     text( myText, (2*myX + myWidth)/2, (2*myY + myHeight)/2 - 5 );
     popStyle();
   }
+
+
 }
 
+public class gameStateButton extends Button
+{
+  int state;
+  public gameStateButton() {state = -1;}
+  public gameStateButton(int xx, int yy, int wid, int hgt, String txt, int stt) {
+    state = stt;
+  }
+  public void mouseReleased() {
+    for (int i = 0; i < gameStates.length; i ++) {
+      if (gameStates[i]) {
+        gameStates[i] = false;
+      }
+      if (i == state) {
+        gameStates[i] = true;
+      }
+    }
+  }
+}
+
+// Public class mainMenuButton
+
+// Public class logButton
+
+// public class inGameMenu
 
 
 //CLASSES:
