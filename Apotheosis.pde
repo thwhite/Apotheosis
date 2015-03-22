@@ -1,6 +1,7 @@
 //OBJECTS
 Player eva;
-Button mainMenuBtn1, mainMenuBtn2, menuBtn, logBtn;
+Button  menuBtn, logBtn;
+MenuButton mainMenuBtn1, mainMenuBtn2;
 //ARRAYS
 boolean[] gameStates; 
 
@@ -296,7 +297,7 @@ public class MenuButton extends Button
     myColor1 = 0; myColor2 = 0; myColor3 = 200;
     index = idx;
   }
-  public void mouseReleased() {
+  public void activate() {
     if (this.detectHover()) {
       for (int i = 0; i < gameStates.length; i ++) {
         gameStates[i] = false;
@@ -308,9 +309,9 @@ public class MenuButton extends Button
 
 public void mouseReleased() {
   if (gameStates[0]) {
-    mainMenuBtn1.mouseReleased();
+    mainMenuBtn1.activate();
   }
-  background(255);
+  
 
 }
 
