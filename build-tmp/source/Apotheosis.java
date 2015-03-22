@@ -16,8 +16,8 @@ public class Apotheosis extends PApplet {
 
 //OBJECTS
 Player eva;
-Button  menuBtn, logBtn;
-MenuButton mainMenuBtn1, mainMenuBtn2;
+// Button  menuBtn, logBtn;
+MenuButton menuBtn, logBtn, mainMenuBtn1, mainMenuBtn2;
 //ARRAYS
 boolean[] gameStates; 
 
@@ -33,21 +33,21 @@ public void setup() {
   size(1000, 600);
 
   eva = new Player();
-  menuBtn = new Button(width - 100, height - 40, 100, 40, "Menu");
-  logBtn = new Button(width - 200, height - 40, 100, 40, "Log");
+  menuBtn = new MenuButton(width - 100, height - 40, 100, 40, "Menu", 2);
+  logBtn = new MenuButton(width - 200, height - 40, 100, 40, "Log", 2);
   mainMenuBtn1 = new MenuButton(width/2 - 75, height - 100, 150, 60, "LAUNCH", 1);
 
 
   gameStates = new boolean[3];
   gameStates[0] = true;
+  gameStates[1] = false;
+  gameStates[2] = false;
 
   // mainMenu = false;
   // gameState = true;
 
 }
 public void draw() {
-  
-
 
   if (gameStates[0]) {
     pushStyle();
@@ -85,10 +85,17 @@ public void draw() {
     logBtn.show();
   }
 		//IF PAUSE
-  
+  if (gameStates[2]) {
+    fill(0, 0, 100);
+    rect(0, 0, width, height);
+
+    menuBtn.show();
+    logBtn.show();
+  }
 	//IF SCENES
 
-  System.out.println(gameStates[0]);
+  System.out.println("Game: " + gameStates[1]);
+  System.out.println("Menu: " + gameStates[2]);
 
 
 }
@@ -326,6 +333,9 @@ public class MenuButton extends Button
 public void mouseReleased() {
   if (gameStates[0]) {
     mainMenuBtn1.activate();
+  } else if (gameStates[1]) {
+    menuBtn.activate();
+    logBtn.activate();
   }
   
 
