@@ -320,11 +320,7 @@ public class MenuButton extends Button
     myColor1 = 0; myColor2 = 0; myColor3 = 200;
     index = idx;
   }
-<<<<<<< HEAD
-  public void mouseReleased() {
-=======
   public void activate() {
->>>>>>> c3615fde4bbf69b09c58db2314ddeef97bf2efc8
     if (this.detectHover()) {
       for (int i = 0; i < gameStates.length; i ++) {
         gameStates[i] = false;
@@ -336,18 +332,12 @@ public class MenuButton extends Button
 
 public void mouseReleased() {
   if (gameStates[0]) {
-<<<<<<< HEAD
-    mainMenuBtn1.mouseReleased();
-  }
-  background(255);
-=======
     mainMenuBtn1.activate();
   } else if (gameStates[1]) {
     menuBtn.activate();
     logBtn.activate();
   }
   
->>>>>>> c3615fde4bbf69b09c58db2314ddeef97bf2efc8
 
 }
 
