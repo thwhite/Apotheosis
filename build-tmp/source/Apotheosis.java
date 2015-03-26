@@ -33,7 +33,7 @@ public void setup() {
   size(1000, 600);
 
   eva = new Player();
-  menuBtn = new MenuButton(width - 100, height - 40, 100, 40, "Menu", 2);
+  menuBtn = new MenuButton(width - 100, height - 40, 100, 40, "Menu", 0);
   logBtn = new MenuButton(width - 200, height - 40, 100, 40, "Log", 2);
   mainMenuBtn1 = new MenuButton(width/2 - 75, height - 100, 150, 60, "LAUNCH", 1);
 
@@ -86,16 +86,19 @@ public void draw() {
   }
 		//IF PAUSE
   if (gameStates[2]) {
-    fill(0, 0, 100);
-    rect(0, 0, width, height);
+    background(0);
+    pushStyle();
 
+    fill(0);
+    stroke(0, 0, 100);
+    strokeWeight(20);
+    rect(20, 20, width - 240, height - 40);
+
+    popStyle();
     menuBtn.show();
     logBtn.show();
   }
 	//IF SCENES
-
-  System.out.println("Game: " + gameStates[1]);
-  System.out.println("Menu: " + gameStates[2]);
 
 
 }
